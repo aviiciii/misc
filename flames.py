@@ -1,5 +1,3 @@
-
-
 def main():
     while True:
         try:
@@ -16,7 +14,17 @@ def main():
     
     count = len(person1) + len(person2)
     res = flames(count)
-    print(res)
+
+    results = {
+        'F': 'Friends',
+        'L': 'Lovers',
+        'A': 'Affectionate',
+        'M': 'Marriage',
+        'E': 'Enemies',
+        'S': 'Siblings'
+    }
+
+    print(res, ':', results[res])
     
 
 def flames(count):
@@ -30,7 +38,6 @@ def flames(count):
 def get_names():
     p1 = input('P1 Name: ').strip().replace(' ','')
     p2 = input('P2 Name: ').strip().replace(' ','')
-    print(p1, p2)
     if p1.isalpha() and p2.isalpha():
         return [p1.lower(), p2.lower()]
     
