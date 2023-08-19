@@ -45,6 +45,27 @@ def validate(email_address):
 		return False
 
 
-print(validate('sec20cs999@sairamtap.edu.in'))
+# print(validate('sec20cs999@sairamtap.edu.in'))
 
+file_name = 'emails.txt'
+with open(file_name, 'r') as f:
+	emails = f.readlines()
 
+	valid = 0
+	invalid = 0
+	for email in emails:
+		email = email.strip()
+		
+		
+		if validate(email):
+			with open('valid_emails.txt', 'a') as f:
+				f.write(email + '\n')
+			valid += 1
+		else:
+			invalid += 1
+
+		print(f'done {valid+invalid} emails')
+
+print('done')
+print(f'valid: {valid}')
+print(f'invalid: {invalid}')
