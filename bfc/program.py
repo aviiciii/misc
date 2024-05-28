@@ -17,7 +17,7 @@ def add_image_to_pdf(input_pdf_path, output_pdf_path, image_path, scaling_factor
     """
     # Open the original PDF
     with open(input_pdf_path, 'rb') as input_pdf_file:
-        reader = PyPDF2.PdfReader(input_pdf_file)
+        reader = PyPDF2.PdfReader(input_pdf_file, strict=False)
         writer = PyPDF2.PdfWriter()
 
         # Open the image
@@ -34,7 +34,7 @@ def add_image_to_pdf(input_pdf_path, output_pdf_path, image_path, scaling_factor
             original_page_width = float(original_page.mediabox.width)
             original_page_height = float(original_page.mediabox.height)
 
-            # Determine position
+            # Determine position (-1 for center)
             if position:
                 x, y = position
             else:
@@ -43,7 +43,7 @@ def add_image_to_pdf(input_pdf_path, output_pdf_path, image_path, scaling_factor
                 y = (original_page_height - img_height) / 2.0
             if y < 0:
                 y = (original_page_height - img_height) / 2.0
-            elif x<0:
+            elif x < 0:
                 x = (original_page_width - img_width) / 2.0
 
             # Create a new PDF with the image
@@ -66,11 +66,14 @@ def add_image_to_pdf(input_pdf_path, output_pdf_path, image_path, scaling_factor
         with open(output_pdf_path, 'wb') as output_pdf_file:
             writer.write(output_pdf_file)
 
-# Example usage
-input_pdf_path = 'master.pdf'
-output_pdf_path = 'output.pdf'
-image_path = 'image.png'
-scaling_factor = 0.27  # Reduce the image size to 50% of the original
-position = (-1, 200)  # Manually position the image (x, y)
+def main(): 
+    input_pdf_path = 'dummy.pdf'
+    output_pdf_path = 'output.pdf'
+    image_path = 'image.png'
+    scaling_factor = 0.25
+    position = (-1, 220) # Centered horizontally, 220 units from the bottom
 
-add_image_to_pdf(input_pdf_path, output_pdf_path, image_path, scaling_factor, position)
+    add_image_to_pdf(input_pdf_path, output_pdf_path, image_path, scaling_factor, position)
+
+if __name__ == '__main__':
+    main()
