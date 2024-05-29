@@ -92,7 +92,32 @@ def add_image_and_text_to_pdf(input_pdf_path, output_pdf_path, image_path, scali
             writer.write(output_pdf_file)
 
 def main():
-    input_pdf_path = 'dummy.pdf'
+
+    branches = [
+        "Ahmedabad",
+        "Amritsar",
+        "Anand",
+        "Bangalore",
+        "Bareily",
+        "Bathinda",
+        "Bhopal",
+        "Bhubaneswar",
+        "Calicut",
+        "Chandigarh",
+        "Chennai",
+        "Cochin N",
+        "Cochin",
+        "Dehradun",
+        "Gurugram",
+        "Hoshiarpur",
+        "Hyderabad",
+        "Indore",
+        "Jaipur",
+        "Jalandhar",
+    
+    ]
+
+    input_pdf_path = 'master.pdf'
     output_pdf_path = 'output.pdf'
     image_path = 'image.png'
     scaling_factor = 0.25
